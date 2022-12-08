@@ -1,14 +1,25 @@
-FROM node:16-slim as node-build
+FROM node:19-slim as node-build
+
 
 ARG NPM_CONFIG__AUTH
 ARG NPM_CONFIG_REGISTRY=https://workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/
 ARG NPM_CONFIG_ALWAYS_AUTH=true
 ARG GIT_TAG
 
+RUN reg=$(echo "$NPM_CONFIG_REGISTRY" | cut -d ":" -f 2) && \
+    echo "$reg:_auth = $NPM_CONFIG__AUTH" > /.npmrc && \
+    echo "registry = $NPM_CONFIG_REGISTRY" >> /.npmrc && \
+    echo "always-auth = true" >> /.npmrc
+
+
 WORKDIR /build/
 
 COPY package.json /build/
+RUN npm --version
+RUN npm config get registry
+RUN npm update --location=global
 RUN npm install --include=dev
+RUN npm --version
 
 COPY . /build/
 
