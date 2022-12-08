@@ -1,4 +1,4 @@
-FROM node:19-slim as node-build
+FROM node:16-slim as node-build
 
 
 ARG NPM_CONFIG__AUTH
