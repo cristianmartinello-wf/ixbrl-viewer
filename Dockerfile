@@ -19,7 +19,7 @@ COPY package.json /build/
 RUN npm --version
 RUN npm config get registry
 RUN npm update --location=global
-RUN npm install --include=dev --loglevel=info
+RUN npm install --include=dev
 RUN npm --version
 
 COPY . /build/
