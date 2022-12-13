@@ -4,7 +4,7 @@ FROM node:16-slim as node-build
 ARG NPM_CONFIG__AUTH
 ARG NPM_CONFIG_REGISTRY=https://workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/
 ARG NPM_CONFIG_ALWAYS_AUTH=true
-# ARG NPM_CONFIG_USERCONFIG=/build/.npmrc
+RG NPM_CONFIG_USERCONFIG
 ARG GIT_TAG
 
 #RUN reg=$(echo "$NPM_CONFIG_REGISTRY" | cut -d ":" -f 2) && \
@@ -18,7 +18,7 @@ WORKDIR /build/
 COPY package.json /build/
 RUN npm --version
 RUN npm config get registry
-# RUN npm update --location=global
+RUN npm update --location=global
 RUN npm install --include=dev --loglevel=info
 RUN npm --version
 
