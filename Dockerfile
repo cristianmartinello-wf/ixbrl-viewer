@@ -6,10 +6,10 @@ ARG NPM_CONFIG_REGISTRY=https://workivaeast.jfrog.io/workivaeast/api/npm/npm-pro
 ARG NPM_CONFIG_ALWAYS_AUTH=true
 ARG GIT_TAG
 
-#RUN reg=$(echo "$NPM_CONFIG_REGISTRY" | cut -d ":" -f 2) && \
-#    echo "$reg:_auth = $NPM_CONFIG__AUTH" > /.npmrc && \
-#    echo "registry = $NPM_CONFIG_REGISTRY" >> /.npmrc && \
-#    echo "always-auth = true" >> /.npmrc
+RUN reg=$(echo "$NPM_CONFIG_REGISTRY" | cut -d ":" -f 2) && \
+    echo "$reg:_auth = $NPM_CONFIG__AUTH" > /.npmrc && \
+    echo "registry = $NPM_CONFIG_REGISTRY" >> /.npmrc && \
+    echo "always-auth = true" >> /.npmrc
 ARG NPM_CONFIG_USERCONFIG
 
 
@@ -18,7 +18,7 @@ WORKDIR /build/
 COPY package.json /build/
 RUN npm --version
 RUN npm config get registry
-RUN npm update --location=global
+# RUN npm update --location=global
 RUN npm install --include=dev --loglevel=info
 RUN npm --version
 
