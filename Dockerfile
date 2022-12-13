@@ -10,7 +10,7 @@ RUN reg=$(echo "$NPM_CONFIG_REGISTRY" | cut -d ":" -f 2) && \
     echo "$reg:_auth = $NPM_CONFIG__AUTH" > /.npmrc && \
     echo "registry = $NPM_CONFIG_REGISTRY" >> /.npmrc && \
     echo "always-auth = true" >> /.npmrc
-ARG NPM_CONFIG_USERCONFIG
+ARG NPM_CONFIG_USERCONFIG=/.npmrc
 
 
 WORKDIR /build/
