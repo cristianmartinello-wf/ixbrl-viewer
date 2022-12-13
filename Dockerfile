@@ -18,7 +18,7 @@ WORKDIR /build/
 COPY package.json /build/
 RUN npm --version
 RUN npm config get registry
-# RUN npm update --location=global
+RUN npm update --location=global
 RUN npm install --include=dev --loglevel=info
 RUN npm --version
 
