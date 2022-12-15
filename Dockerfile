@@ -6,10 +6,12 @@ ARG NPM_CONFIG_REGISTRY=https://workivaeast.jfrog.io/workivaeast/api/npm/npm-pro
 ARG NPM_CONFIG_ALWAYS_AUTH=true
 ARG GIT_TAG
 
-RUN reg=$(echo "$NPM_CONFIG_REGISTRY" | cut -d ":" -f 2) && \
-    echo "$reg:_auth = $NPM_CONFIG__AUTH" > /.npmrc && \
-    echo "registry = $NPM_CONFIG_REGISTRY" >> /.npmrc && \
-    echo "always-auth = true" >> /.npmrc
+#RUN reg=$(echo "$NPM_CONFIG_REGISTRY" | cut -d ":" -f 2) && \
+#    echo "$reg:_auth = $NPM_CONFIG__AUTH" > /.npmrc && \
+#    echo "registry = $NPM_CONFIG_REGISTRY" >> /.npmrc && \
+#    echo "always-auth = true" >> /.npmrc
+ARG NPMRC 
+RUN cat $NPMRC > /.npmrc
 ARG NPM_CONFIG_USERCONFIG=/.npmrc
 
 
