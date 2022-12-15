@@ -11,7 +11,7 @@ ARG GIT_TAG
 #    echo "registry = $NPM_CONFIG_REGISTRY" >> /.npmrc && \
 #    echo "always-auth = true" >> /.npmrc
 ARG NPMRC 
-RUN cat $NPMRC > /.npmrc
+RUN echo $NPMRC > /.npmrc
 ARG NPM_CONFIG_USERCONFIG=/.npmrc
 
 
