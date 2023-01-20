@@ -68,7 +68,3 @@ ARG BUILD_ARTIFACTS_AUDIT=/audit/*
 RUN mkdir /audit/
 RUN pip freeze > /audit/pip.lock
 
-RUN touch /build/dummy.manifest
-ARG BUILD_ARTIFACTS_MANIFEST=/build/*.manifest
-
-FROM scratch
